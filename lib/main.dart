@@ -3,6 +3,7 @@ import 'package:bmicaculator/models/bmi/bmi_screen.dart';
 import 'package:flutter/material.dart';
 
 import 'layout/home_layout.dart';
+import 'models/counter/counter_screen.dart';
 import 'models/login/login_screen.dart';
 
 void main(){
@@ -21,7 +22,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: HomeLayout(),
+      home: CounterScreen(),
     );
   }
 }

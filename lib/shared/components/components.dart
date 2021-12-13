@@ -30,13 +30,13 @@ Widget defaultFormField({
   required IconData prfex,
   bool isPassword = false,
   IconData? suffix,
-  Function? suffixPressed,
-  Function? ontap,
+  Function()? suffixPressed,
+  Function()? ontap,
 
 }) =>TextFormField(
 controller: controller,
 keyboardType: type,
-  onTap: (){} ,
+  onTap: ontap ,
   obscureText: isPassword,
 decoration: InputDecoration(
 labelText: label,
@@ -49,4 +49,38 @@ suffixIcon: suffix != null ? IconButton(
 ) :null,
 border: OutlineInputBorder(),
 ),
+);
+
+Widget buildTaskItem() => Padding(
+  padding: const EdgeInsets.all(20.0),
+  child: Row(
+    children: [
+      CircleAvatar(
+        radius: 40,
+        child: Text(
+            '02:00 pm'
+        ),
+      ),
+      SizedBox(
+        width: 20,
+      ),
+      Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(
+            'Task Title',
+            style: TextStyle(
+              fontSize: 18, fontWeight: FontWeight.bold,
+            ),
+          ),
+          Text(
+            '2 april , 2021',
+            style: TextStyle(
+                color: Colors.grey
+            ),
+          ),
+        ],
+      ),
+    ],
+  ),
 );
