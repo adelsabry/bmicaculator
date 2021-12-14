@@ -8,10 +8,8 @@ class NewTasksScreen extends StatelessWidget
 
 @override
   Widget build(BuildContext context) {
-
-  var comp;
   return ListView.separated(itemBuilder: (context , index) =>
-        comp.buildTaskItem(tasks[index]),
+       buildTaskItem(tasks[index]),
        separatorBuilder: (context , index) => Padding(
          padding: const EdgeInsetsDirectional.only(
            start: 20,

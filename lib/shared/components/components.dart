@@ -51,7 +51,7 @@ border: OutlineInputBorder(),
 ),
 );
 
-Widget buildTaskItem() => Padding(
+Widget buildTaskItem(Map <dynamic , dynamic>tasks) => Padding(
   padding: const EdgeInsets.all(20.0),
   child: Row(
     children: [

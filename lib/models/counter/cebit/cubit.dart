@@ -6,7 +6,6 @@ class CounterCubit extends Cubit<CounterStates>
 {
   CounterCubit () : super(CounterIntialStates());
 
-
   static CounterCubit get(context) => BlocProvider.of(context);
 
   int counter = 1;
@@ -14,10 +13,10 @@ class CounterCubit extends Cubit<CounterStates>
   void minus()
   {
     counter--;
-    emit(CounterMinusStates());
+    emit(CounterMinusStates(counter));
   }
   void plus(){
     counter++;
-    emit(CounterPlusStates());
+    emit(CounterPlusStates(counter));
   }
 }
