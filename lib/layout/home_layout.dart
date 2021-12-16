@@ -66,7 +66,7 @@ class HomeLayout extends StatelessWidget {
                         defaultFormField(
                           controller: titleController,
                           type: TextInputType.text,
-                          label: 'Task Tiltle',
+                          label: 'Task Title',
                           prfex: Icons.title,
                         ),
                         SizedBox(

@@ -1,3 +1,5 @@
+import 'package:bmicaculator/shared/cubit/cubit.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 Widget defaultButton({
@@ -51,35 +53,58 @@ border: OutlineInputBorder(),
 ),
 );
 
-Widget buildTaskItem(Map <dynamic , dynamic>tasks) => Padding(
+Widget buildTaskItem(Map <dynamic , dynamic>tasks , context) => Padding(
   padding: const EdgeInsets.all(20.0),
   child: Row(
     children: [
       CircleAvatar(
         radius: 40,
         child: Text(
-            '02:00 pm'
+            '${tasks['time']}'
         ),
       ),
       SizedBox(
         width: 20,
       ),
-      Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Text(
-            'Task Title',
-            style: TextStyle(
-              fontSize: 18, fontWeight: FontWeight.bold,
+      Expanded(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              '${tasks['title']}',
+              style: TextStyle(
+                fontSize: 18, fontWeight: FontWeight.bold,
+              ),
             ),
-          ),
-          Text(
-            '2 april , 2021',
-            style: TextStyle(
-                color: Colors.grey
+            Text(
+              '${tasks['date']}',
+              style: TextStyle(
+                  color: Colors.grey
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
+      ),
+      SizedBox(
+        width: 20,
+      ),
+      IconButton(
+        onPressed: ()
+        {
+          AppCubit.get(context).updateData(status: 'done', id: tasks['id'],);
+        },
+        icon: Icon(Icons.check_box,
+          color: Colors.green,
+      ),
+      ),
+      IconButton(
+        onPressed: ()
+        {
+          AppCubit.get(context).updateData(status: 'archived', id: tasks['id'],);
+        },
+        icon: Icon(Icons.archive,
+          color: Colors.black45,
+      ),
       ),
     ],
   ),
