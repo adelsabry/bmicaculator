@@ -42,7 +42,7 @@ class AppCubit extends Cubit<AppStates>
         'todo.db',
         version: 1,
         onCreate: (database, version) {
-          print('db created');
+          print('database created');
           database
               .execute(
               'CREATE TABLE tasks (id INTEGER PRIMARY KEY, title TEXT, date TEXT, time TEXT, status TEXT)')
@@ -67,8 +67,8 @@ class AppCubit extends Cubit<AppStates>
     required String date,
   }) async
   {
-   await database.transaction((txn) async {
-      await txn.rawInsert(
+   await database.transaction((txn)async {
+     await txn.rawInsert(
           'INSERT INTO tasks(title, date, time, status) VALUES("$title", "$date", "$time", "new")'
       ).then((value)
       {
@@ -78,10 +78,8 @@ class AppCubit extends Cubit<AppStates>
         getDataFromDatabase(database);
       }).catchError((error) {
         print('ERROR when inserting Nwe Record ${error.toString()}');
-      }
-      );
-    }
-    );
+      });
+    });
   }
 
   void getDataFromDatabase(database)
@@ -113,8 +111,8 @@ class AppCubit extends Cubit<AppStates>
 }) async
   {
     database.rawUpdate(
-        'UPDATE tasks SET status = ?, value = ? WHERE id = ?',
-        ['$status', id]
+        'UPDATE tasks SET status = ?,  WHERE id = ?',
+        ['$status', id],
     ).then((value)
     {
       getDataFromDatabase(database);
