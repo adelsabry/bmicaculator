@@ -99,6 +99,7 @@ class AppCubit extends Cubit<AppStates>
         else
         if(element['status'] == 'done')
           doneTasks.add(element);
+
         else archivedTasks.add(element);
       });
       emit(AppGetDatabase());
@@ -111,12 +112,25 @@ class AppCubit extends Cubit<AppStates>
 }) async
   {
     database.rawUpdate(
-        'UPDATE tasks SET status = ?,  WHERE id = ?',
+        'UPDATE tasks SET status = ? WHERE id = ?',
         ['$status', id],
     ).then((value)
     {
       getDataFromDatabase(database);
       emit(AppUpdateDatabase());
+    });
+  }
+
+  void deleteData({
+    required int id,
+  }) async
+  {
+    database.rawDelete(
+      'DELETE FROM tasks WHERE id = ?', [id],
+    ).then((value)
+    {
+      getDataFromDatabase(database);
+      emit(AppDeleteDatabase());
     });
   }
 
